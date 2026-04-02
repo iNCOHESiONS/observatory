@@ -65,7 +65,7 @@ def prefix_tag(*, contents: str) -> Formatter:
         The resulting formatter.
     """
 
-    return lambda msg, _: f"<{contents}> {msg}"
+    return lambda msg, _: f"<{contents}>{msg}"
 
 
 def line_info(*, fmt: str = "[{file}@L{loc}] {msg}") -> Formatter:
@@ -137,7 +137,7 @@ def date_time(*, fmt: str = "[%H:%M:%S] {}") -> Formatter:
     ----------
     fmt: `str`
         The format to use. `"[%H:%M:%S] {}"` by default.
-        Example: [00:00:00] The quick brown fox jumps over the lazy dog.
+        Example: `[00:00:00] The quick brown fox jumps over the lazy dog.`
 
     Returns
     -------
