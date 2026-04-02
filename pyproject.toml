@@ -1,0 +1,54 @@
+[project]
+name = "observatory"
+version = "0.0.1"
+description = "A logging library."
+readme = "README.md"
+requires-python = ">=3.14"
+license = "MIT"
+authors = [{ name = "iNCOHESiONS", email = "incohesions@gmail.com" }]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.basedpyright]
+typeCheckingMode = "all"
+pythonVersion = "3.14"
+
+reportAny = false
+reportExplicitAny = false
+reportImportCycles = false  # handled by `if TYPE_CHECKING`, which basedpyright can't detect, apparently
+reportUnannotatedClassAttribute = false
+reportUnusedCallResult = false
+
+[tool.poetry]
+packages = [{ include = "observatory" }]
+repository = "https://github.com/incohesions/observatory"
+homepage = "https://github.com/incohesions/observatory"
+
+keywords = [
+  "logger",
+  "logging",
+  "observability",
+]
+
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python",
+]
+
+[tool.poetry.dependencies]
+colorama = [
+  { version = "^0.4.6", markers = "sys_platform == 'win32'" },
+]
+python = "^3.14"
+
+[tool.ruff.format]
+docstring-code-format = true
