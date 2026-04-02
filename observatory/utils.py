@@ -79,14 +79,15 @@ def hex_to_ansi(hex: str, /, *, background: bool = False) -> str:
 
 def colorize(msg: str, /, *, background: bool = False) -> str:
     """
-    Parses a message, turning all tags into ANSI color codes.
+    Parses a message, turning all tags into ANSI color and modifier codes.
 
     Supports:
-    - Hex colors: tags with a leading #, e.g., <#FF0000>, so a pure red.\n
-    - ANSI codes: tags with a leading !, where the ! gets replaced with \033[, e.g., <!31m>, a red foreground.\n
-    - ANSI modifiers: tags that don't contain any of the previous leads, e.g., <bold>.\n
-    - All CSS colors: tags that don't contain any of the previous leads, and aren't modifiers, e.g., <black>.\n
-    - Closing tags, general and specific for modifiers: </> for resetting all colors and modifiers, and </{modifier}> for resetting specific modifiers, e.g., </bold>.
+    - Hex colors: tags with a leading #, e.g., `<#FF0000>`, a pure red.\n
+    - ANSI codes: tags with a leading !, where the ! gets replaced with `ESC[`, e.g., `<!31m>`, a red foreground.\n
+    - ANSI modifiers: tags that don't contain any of the previous leads, e.g., `<bold>`.\n
+    - All CSS colors: tags that don't contain any of the previous leads, and aren't modifiers, e.g., `<black>`.\n
+    - Closing tags, general and specific for modifiers: `</>` for resetting all colors and modifiers,
+      and </{modifier}> for resetting specific modifiers, e.g., `</bold>`.
 
     Tagging is case insensitive.
 
