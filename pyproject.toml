@@ -1,7 +1,7 @@
 [project]
 name = "observatory"
 version = "0.0.1"
-description = "A logging library."
+description = "A small and modular logging library with dynamic formatting capabitilies."
 readme = "README.md"
 requires-python = ">=3.14"
 license = "MIT"
