@@ -2,7 +2,7 @@
 Observatory
 -----------
 
-A small and modular logging library with dynamic formatting capabitilies.
+A small and modular logging library with dynamic formatting capabilities.
 
 :copyright: (c) 2026 by iNCOHESiONS.
 :license: MIT, see LICENSE for more details.

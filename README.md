@@ -1,6 +1,6 @@
 # Observatory
 
-A small and modular logging library with dynamic formatting capabitilies.
+A small and modular logging library with dynamic formatting capabilities.
 
 ![Example](https://i.imgur.com/OTKlH3l.png)
 
