@@ -1,3 +1,13 @@
+"""
+Observatory
+-----------
+
+A small and modular logging library with dynamic formatting capabitilies.
+
+:copyright: (c) 2026 by iNCOHESiONS.
+:license: MIT, see LICENSE for more details.
+"""
+
 import os
 from typing import Callable
 
