@@ -8,6 +8,16 @@ A small and modular logging library with dynamic formatting capabilities.
 :license: MIT, see LICENSE for more details.
 """
 
+__title__ = "Observatory"
+__description__ = (
+    "A small and modular logging library with dynamic formatting capabilities."
+)
+__url__ = "https://github.com/incohesions/observatory"
+__author__ = "iNCOHESiONS"
+__version__ = "0.0.1"
+__license__ = "MIT"
+__copyright__ = "Copyright 2026, iNCOHESiONS <incohesions@gmail.com>"
+
 import os
 from typing import Callable
 
