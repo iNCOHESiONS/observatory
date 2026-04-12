@@ -9,7 +9,7 @@ from observatory import (
     log_level,
 )
 
-colors = ("bisque", "!32m", "!37m", "orange", "!31m", "!31m")
+colors = ("bisque", "!2", "!7", "orange", "!1", "!1")
 modifiers = ("italic", "italic", "none", "bold", "bold", "inverse")
 
 logger = FileLogger(
@@ -19,8 +19,8 @@ logger = FileLogger(
             color_getter=dict(zip(LogLevel, colors)).__getitem__,
             modifier_getter=dict(zip(LogLevel, modifiers)).__getitem__,
         ),
-        line_info(fmt="<!33m>[{file}@L{loc}]</> {msg}"),
-        date_time(fmt="<!34m><bold>[%H:%M:%S]</> {}"),
+        line_info(fmt="<!3>[{file}@L{loc}]</> {msg}"),
+        date_time(fmt="<!4><bold>[%H:%M:%S]</> {}"),
         foreground(),
         linebreak(),
     )
