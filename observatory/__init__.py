@@ -60,7 +60,7 @@ _loggers: dict[str, Logger] = {}
 
 
 def get_logger[T: Logger = FileLogger](
-    name: str, /, *, factory: Callable[[], T] = FileLogger
+    name: str = "root", /, *, factory: Callable[[], T] = FileLogger
 ) -> T:
     """
     Returns a `Logger` with the specified name, creating it using `factory` if necessary.\n
@@ -68,10 +68,10 @@ def get_logger[T: Logger = FileLogger](
 
     Parameters
     ----------
-    name: `str`
-        The name of the logger.
-    factory: `Callable[[], T]`
-        The factory to use to create the logger, if necessary.
+    name: `str`, optional
+        The name of the logger. "root" by default.
+    factory: `Callable[[], T]`, optional
+        The factory to use to create the logger, if necessary. `FileLogger` by default.
 
     Returns
     -------
