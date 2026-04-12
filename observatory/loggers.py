@@ -14,16 +14,20 @@ __all__ = [
 @dataclass(kw_only=True)
 class FileLogger(Logger):
     """
-    Logs to a file, and formats whatever message is being logged using `Formatter`s.\n
+    Logs to a file, and formats whatever message is being logged using `Formatter`s. Empty messages are not logged.\n
     By default, simply adds a line-break at the end of each message. See `formatters` for more.
     """
 
     file: TextIO = stdout
+    """The file to log to. `stdout` by default."""
+
     formatter: Formatter = field(default_factory=linebreak)
+    """The formatter to run the message through. Empty results are ignored. `linebreak` by default."""
 
     @override
     def log(self, msg: Any, /, level: LogLevel) -> None:
-        self.file.write(self.formatter(str(msg), level))
+        if content := self.formatter(str(msg), level):
+            self.file.write(content)
 
     @override
     def __eq__(self, other: Any, /) -> bool:
