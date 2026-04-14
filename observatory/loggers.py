@@ -11,11 +11,11 @@ __all__ = [
 ]
 
 
-@dataclass(kw_only=True)
+@dataclass(slots=True, kw_only=True)
 class FileLogger(Logger):
     """
     Logs to a file, and formats whatever message is being logged using `Formatter`s. Empty messages are not logged.\n
-    By default, simply adds a line-break at the end of each message. See `formatters` for more.
+    By default, simply adds a line-break at the end of each message. See `observatory.formatters` for more.
     """
 
     file: TextIO = stdout
