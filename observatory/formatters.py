@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Callable
 
 from .core import Formatter, LogLevel
-from .utils import colorize
+from .utils import colorize, noop_tags
 
 __all__ = [
     "background",
@@ -33,7 +33,7 @@ def foreground() -> Formatter:
     return lambda msg, _: colorize(msg)
 
 
-colored = foreground
+colored = foreground  # alias
 
 
 def background() -> Formatter:
@@ -47,6 +47,19 @@ def background() -> Formatter:
     """
 
     return lambda msg, _: colorize(msg, background=True)
+
+
+def no_color() -> Formatter:
+    """
+    Creates a `Formatter` that applies `noop_tags`, removing all tags from the message and preventing any colors or modifiers from being applied.
+
+    Returns
+    -------
+    `Formatter`
+        The created `Formatter`.
+    """
+
+    return lambda msg, _: noop_tags(msg)
 
 
 def prefix_tag(*, contents: str) -> Formatter:
@@ -100,7 +113,7 @@ def log_level(
 ) -> Formatter:
     """
     Creates a `Formatter` that prefixes the message with its log level.\n
-    Requires `foreground` or `background` to be called afterwards in a `combined` `Formatter`, to consume the tags in `fmt`.
+    Requires a formatter like `background`, `foreground` or `no_color` being applied afterwards to consume the tags in `fmt`.
 
     Parameters
     ----------

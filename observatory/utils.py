@@ -7,6 +7,7 @@ import observatory.modifiers as modifiers
 __all__ = [
     "colorize",
     "hex_to_ansi",
+    "noop_tags",
 ]
 
 
@@ -172,3 +173,16 @@ def colorize(
     )
 
     return applied + _RESET
+
+
+def noop_tags(msg: str, /) -> str:
+    """
+    Simply removes all tags from a message, preventing any colors or modifiers from being applied.
+
+    Parameters
+    ----------
+    msg: `str`
+        The message to remove tags from.
+    """
+
+    return _TAG_PATTERN.sub("", msg)
