@@ -36,7 +36,7 @@ class LogLevel(IntEnum):
 
 
 class Logger(ABC):
-    """Base class for loggers."""
+    """Base class for loggers. See `observatory.loggers` for implementation examples."""
 
     @final
     def __enter__(self) -> Self:
@@ -58,7 +58,7 @@ class Logger(ABC):
         Parameters
         ----------
         msg: `Any`
-            The message to be logged. Will be converted to a string using `str`.
+            The message to be logged.
         level: `LogLevel`
             The log level.
         """
@@ -73,7 +73,7 @@ class Logger(ABC):
         Parameters
         ----------
         msg: `Any`
-            The message to be logged. Will be converted to a string using `str`.
+            The message to be logged.
         """
 
         self.log(msg, LogLevel.verbose)
@@ -86,7 +86,7 @@ class Logger(ABC):
         Parameters
         ----------
         msg: `Any`
-            The message to be logged. Will be converted to a string using `str`.
+            The message to be logged.
         """
 
         self.log(msg, LogLevel.debug)
@@ -99,7 +99,7 @@ class Logger(ABC):
         Parameters
         ----------
         msg: `Any`
-            The message to be logged. Will be converted to a string using `str`.
+            The message to be logged.
         """
 
         self.log(msg, LogLevel.info)
@@ -112,7 +112,7 @@ class Logger(ABC):
         Parameters
         ----------
         msg: `Any`
-            The message to be logged. Will be converted to a string using `str`.
+            The message to be logged.
         """
 
         self.log(msg, LogLevel.warning)
@@ -125,7 +125,7 @@ class Logger(ABC):
         Parameters
         ----------
         msg: `Any`
-            The message to be logged. Will be converted to a string using `str`.
+            The message to be logged.
         """
 
         self.log(msg, LogLevel.error)
@@ -138,7 +138,7 @@ class Logger(ABC):
         Parameters
         ----------
         msg: `Any`
-            The message to be logged. Will be converted to a string using `str`.
+            The message to be logged.
         """
 
         self.log(msg, LogLevel.critical)
@@ -148,19 +148,21 @@ class Logger(ABC):
     fatal = critical  # alias
 
     @final
-    def panic(self, msg: Any, /, *, code: int = -1) -> NoReturn:
+    def panic(
+        self, msg: Any, /, *, code: int = -1, level: LogLevel = LogLevel.critical
+    ) -> NoReturn:
         """
         Logs a message with log level `LogLevel.critical` and exits the program with code `code`, `-1` by default.
 
         Parameters
         ----------
         msg: `Any`
-            The message to be logged. Will be converted to a string using `str`.
+            The message to be logged.
         code: `int`
             The code to exit the program with. `-1` by default.
         """
 
-        self.critical(msg)
+        self.log(msg, level)
         exit(code)
 
     def cleanup(self) -> None:
@@ -168,4 +170,4 @@ class Logger(ABC):
 
 
 type Formatter = Callable[[str, LogLevel], str]
-"""`Formatter`s are functions that return a formatted version of the message based on its original form and its `LogLevel`"""
+"""`Formatter`s are functions that return a formatted version of the message based on the original and its `LogLevel`"""
