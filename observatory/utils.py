@@ -4,21 +4,20 @@ from functools import reduce
 import observatory.css_colors as colors
 import observatory.modifiers as modifiers
 
+from .modifiers import RESET
+
 __all__ = [
     "colorize",
     "hex_to_ansi",
     "noop_tags",
 ]
 
-
-_RESET = "\033[0m"
-
 _COLORS = {name.casefold(): value for name, value in vars(colors).items()}
 _MODIFIERS = {name.casefold(): value for name, value in vars(modifiers).items()}
 
 _CLOSING_MODFS = {
-    "reset": _RESET,
-    "none": _RESET,  # alias
+    "reset": RESET,
+    "none": RESET,  # alias
     "bold": "\033[22m",
     "dim": "\033[22m",
     "faint": "\033[22m",  # alias
@@ -157,7 +156,7 @@ def colorize(
             raise ValueError(f'Unknown color or modifier: "{name}".')
 
     def __handle_closing(match: re.Match[str]) -> str:
-        return _CLOSING_MODFS[tag] if (tag := match.group(1)) else _RESET
+        return _CLOSING_MODFS[tag] if (tag := match.group(1)) else RESET
 
     steps = {
         _TAG_PATTERN: __handle_case,
@@ -172,7 +171,7 @@ def colorize(
         lambda acc, item: item[0].sub(item[1], acc), steps.items(), str(msg)
     )
 
-    return applied + _RESET
+    return applied + RESET
 
 
 def noop_tags(msg: str, /) -> str:
