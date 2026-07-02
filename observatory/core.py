@@ -1,9 +1,7 @@
 from abc import ABC, abstractmethod
 from enum import IntEnum, auto
 from types import TracebackType
-from typing import Any, Callable, Self, final
-
-from typing_extensions import NoReturn
+from typing import Any, Callable, NoReturn, Self, final
 
 __all__ = [
     "Formatter",
