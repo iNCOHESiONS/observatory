@@ -21,6 +21,9 @@ class FileLogger(Logger):
     file: TextIO = stdout
     """The file to log to. `stdout` by default."""
 
+    should_close: bool = False
+    """Whether to close the file during cleanup. `False` by default."""
+
     formatter: Formatter = field(default_factory=linebreak)
     """The formatter to run the message through. Empty results are ignored. `linebreak` by default."""
 
@@ -35,7 +38,7 @@ class FileLogger(Logger):
 
     @override
     def cleanup(self) -> None:
-        if not self.file.closed:
+        if not self.file.closed and self.should_close:
             self.file.close()
 
 
