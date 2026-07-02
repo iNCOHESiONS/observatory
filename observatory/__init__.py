@@ -79,7 +79,7 @@ def get_logger[T: Logger = FileLogger](
         The logger with the specified name.
     """
 
-    return _loggers[name] if name in _loggers else factory()  # pyright: ignore[reportReturnType]
+    return _loggers[name] if name in _loggers else _loggers.setdefault(name, factory())  # pyright: ignore[reportReturnType]
 
 
 getLogger = get_logger  # alias
